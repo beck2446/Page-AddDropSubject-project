@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<style>
+				.row {
+				  	display: flex;
+				  	width: 1100px;
+				  	height: 100vh;
+				    margin: auto;
+				}
+				.column {
+				  flex: 50%;
+				}
+				h2 {
+				  font-size: 80px;
+				  color: white;
+				  padding-left: 50px;
+				}
+				body {
+				    font-family: Prompt;
+				}
+				label {
+					font-size: 20px;
+					padding-left: 70px;
+					font-weight: bold;
+				}
+				input[type=text] {
+				  	width: 70%;
+					padding: 10px;
+					margin: 15px 70px;
+					display: inline-block;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					box-sizing: border-box;
+					background-color: whitesmoke;
+				}
+				input[type=password] {
+				  	width: 70%;
+					padding: 10px;
+					margin: 15px 70px;
+					display: inline-block;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					box-sizing: border-box;
+					background-color: whitesmoke;
+				}
+				input[type=submit] {
+				  	width: 25%;
+				  	background-color: #C3002F;
+				  	color: white;
+				  	padding: 10px;
+				  	margin-top: 30px;
+				  	margin-left: 320px;
+				  	border: none;
+				  	border-radius: 4px;
+				  	cursor: pointer;
+				}
+			</style>
+		</head>
+		<!--พื้นหลังสีเทา-->
+		<body style ="background-color:whitesmoke;">
+			<!--กล่องlogin-->
+			<div class ="row">
+				<!--ฝั่งซ้ายของกล่องlogin พื้นหลังสีเหลือง-->
+				<div class ="column" style="background-color:#FFD13F;">
+					<img src="/images/TU Logo.png" alt="TU Logo" width="110" height="110" style ="position: absolute; left: 260px; top: 20px;">
+					<h3 style ="position: absolute; left: 370px; top: 15px; color:#C3002F;">THAMMASAT UNIVERSITY</h1>
+					<!--กรอบสีแดงภายในฝั่งซ้ายของกรอบlogin-->
+			    	<div style ="background-color:#C3002F; padding: 0; height: 91vh; margin-top: 12%;">
+			   			<h2 style="padding-top: 150px;">REQUEST</h1>
+			   			<h2>FORM</h1>
+			   			<p style ="position: absolute; left: 260px; top: 480px; color: white;">FACULTY OF SCIENCE AND TECHNOLOGY</p>
+			    	</div>
+			  	</div>
+			  	<!--ฝั่งขวาของกล่องlogin พื้นหลังสีขาว-->
+			  	<div class ="column" style ="background-color: white;">
+			  		<img src="/images/unlock.png" alt="unlock pic" width="80" height="80"style="padding-top: 160px; padding-left: 60px;">
+			    	<h1 style="position: absolute; left: 900px; top: 150px; font-size: 50px;">Login</h1>
+			    	<form action="/login" method="post">
+			    		<br><br><label for="username">User name</label><br>
+		 				<input type="text" id="username" name="username" placeholder="User name">
+		 				<label for="password">Password</label><br>
+		 				<input type="password" id="password" name="password" placeholder="Password">
+						<input type="submit"  value="Submit">
+			    	</form>
+			  	</div>
+			</div>
+		</body>
+		
+	</html>

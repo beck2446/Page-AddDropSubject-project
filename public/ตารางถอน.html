@@ -1,0 +1,412 @@
+<html>
+<title> REQUEST FORM </title>
+
+<head>
+    <script src="controllerforถอน.js">
+    </script>
+    <link rel="icon"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #FFFBF6;
+        }
+
+        .sidebar {
+            position: fixed;
+            height: 100%;
+            width: 78px;
+            background-color: #C3002F;
+            padding: 6px 14px;
+            z-index: 99;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.open {
+            width: 250px;
+        }
+
+        .sidebar .logodetail {
+            height: 115px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .sidebar .logodetail .icon {
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar .logodetail .logoname {
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.5s ease;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sidebar.open .logodetail .icon,
+        .sidebar.open .logodetail .logoname {
+            opacity: 1;
+        }
+
+        .sidebar .logodetail #btmn {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            font-size: 35px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar.open .logodetail #btmn {
+            text-align: right;
+        }
+
+        .sidebar i {
+            color: #FFFFFF;
+            height: 60px;
+            min-width: 50px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .sidebar .list {
+            margin-top: 25px;
+            height: 100%;
+        }
+
+        .sidebar li {
+            position: relative;
+            margin: 10px 0;
+            list-style: none;
+        }
+
+        .sidebar li .showname {
+            position: absolute;
+            left: calc(100% + 15px);
+            background: #FFFFFF;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            opacity: 0;
+            white-space: nowrap;
+        }
+
+        .sidebar li:hover .showname {
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sidebar.open li .showname {
+            display: none;
+        }
+
+        .sidebar li a {
+            display: flex;
+            height: 7%;
+            width: 100%;
+            border-radius: 50px;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            background: #C3002F;
+        }
+
+        .sidebar li a:hover {
+            background: #FFD13F;
+        }
+
+        .sidebar li a .linkname {
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 400;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+        }
+
+        .sidebar.open li a .linkname {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar li a:hover .linkname,
+        .sidebar li a:hover i {
+            transition: all 0.5s ease;
+            color: #11101D;
+        }
+
+        .sidebar li i {
+            height: 50px;
+            line-height: 50px;
+            font-size: 25px;
+            border-radius: 12px;
+        }
+
+        .sidebar li.logout {
+            position: fixed;
+            height: 60px;
+            width: 78px;
+            left: 0;
+            bottom: -8px;
+            margin-bottom: 20px;
+            padding: 10px 14px;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.open li.logout {
+            width: 250px;
+        }
+
+        .sidebar li .logoutdetail {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar li.logout .namelogout1,
+        .sidebar li.logout .namelogout2 {
+            font-size: 15px;
+            font-weight: 400;
+            color: #FFFFFF;
+            white-space: nowrap;
+        }
+
+        .sidebar li.logout .namelogout2 {
+            font-size: 12px;
+        }
+
+        .sidebar .logout #loggout {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: #C3002F;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.open .logout #loggout {
+            width: 50px;
+        }
+
+        .webpagemain {
+            position: relative;
+            background: #FFD13F;
+            left: 78px;
+            width: calc(100% - 78px);
+            transition: all 0.5s ease;
+        }
+
+        .webpagemainanother {
+            position: relative;
+            left: 78px;
+            width: calc(100% - 78px);
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.open~.webpagemain {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .sidebar.open~.webpagemainanother {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .webpagemain .webpagemaintext1 {
+            display: inline-block;
+            color: #C3002F;
+            font-weight: 600;
+            font-size: 30px;
+            margin: 5px;
+            margin-top: 2px;
+            margin-left: 140px;
+        }
+
+        .webpagemain .webpagemaintext2 {
+            display: inline-block;
+            color: #C3002F;
+            font-weight: 600;
+            font-size: 18.5px;
+            margin: 15px;
+            margin-left: 143px;
+        }
+
+        .webpagelogo {
+            width: 10;
+            height: 10;
+            margin-left: 25px;
+        }
+
+        .buttonAW {
+            background-color: #C68B59;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        select {
+            font-family: 'Mitr', sans-serif;
+            font-size: 100%;
+            float: all;
+            width: 20%;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #F5F5F5;
+        }
+
+        label {
+            font-family: 'Mitr', sans-serif;
+            font-size: 100%;
+            float: all;
+        }
+
+        input[type=text],
+        input[type=number] {
+            float: all;
+            font-size: 100%;
+            width: 80%;
+            padding: 10px 15px;
+            margin: 5px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="sidebar">
+            <div class="logodetail">
+                <i class='bx bxs-book-open icon'> </i>
+                <div class="logoname"> REQUEST FORM </div>
+                <i class='bx bx-menu' id="btmn"> </i>
+            </div>
+            <ul class="list">
+                <li><a href="#">
+                        <i type=button class='bx bx-arrow-back bx-tada-hover' onclick="location.href='ProjectWebPage3.html'"></i>
+                        <span class="linkname"> Go Back </span> </a>
+                    <span class="showname"> Go Back </span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <div class="logoutdetail">
+                        <div class="namelogout">
+                            <div class="namelogout1"> LOGOUT </div>
+                            <div class="namelogout2"> ออกจากระบบ </div>
+                        </div>
+                    </div>
+                    <i class='bx bx-log-out' id="loggout"> </i>
+                </li>
+            </ul>
+        </div>
+        <div class="webpagemain">
+            <div class="webpagelogo"> <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png"
+                    width="100" height="100" style="margin-top: 10px;"> </div>
+            <div class="webpagemaintext1"> THAMMASAT UNIVERSITY </div> <br>
+            <hr style="height: 2.5; width: 375.5; margin-left: 140px;background-color:#C3002F; border-color: #C3002F;"
+                noshade="noshade">
+            <div class="webpagemaintext2"> FACULTY OF SCIENCE AND TECHNOLOGY </div>
+        </div>
+        <br><br>
+        <div class="webpagemainanother">
+            <center>
+                <h3><b> ถอนรายวิชาล่าช้า(Drop)</b></h3><br>
+                <input type="button" class="buttonAW" value="เพิ่มตาราง" onclick="addRows('dropTable')"
+                    style="font-family: 'Mitr', sans-serif;">&emsp;
+                <input type="button" class="buttonAW" value="ลดตาราง" onclick="deleteRows('dropTable')"
+                    style="font-family: 'Mitr', sans-serif;">
+            </center>
+            <table class="center" id="dropTable" style="margin-left: 80px"><br>
+                <tr>
+                    <label>
+                        <th>ลำดับ</th>
+                        <th>รหัสวิชา</th>
+                        <th>ชื่อวิชา</th>
+                        <th>Section</th>
+                        <th>วันเวลา</th>
+                        <th>หน่วยกิต</th>
+                        <th>ชื่อผู้สอน</th>
+                        <th>ผู้สอนอนุญาต</th>
+                    </label>
+                </tr>
+                <tr>
+                    <td id="dropcol0">
+                        <center><label>1.</label></center>
+                    </td>
+                    <td><input type="text" id="dropcol1" name="ID[]"></td>
+                    <td><input type="text" id="dropcol2" name="subject[]"></td>
+                    <td><input type="text" id="dropcol3" name="section[]"></td>
+                    <td><input type="text" id="dropcol4" name="subjectDate[]"></td>
+                    <td><input type="number" id="dropcol5" name="credit[]" value=0 ></td>
+                    <td><input type="text" id="dropcol6" name="teacherName[]"></td>
+                    <td><center><input type="checkbox" id="dropcol7" name="teacherAccept[]"></center></td>
+                </tr>
+            </table>
+            <center>
+                <h3 style="font-size: 18px;">เหตุผลที่ต้องการถอน</h3>
+                <textarea id="reason" name="reason" cols="150" rows="10"></textarea><br><br>
+                <br><br>
+                <input type=button class="buttonAW" id="submit" value="Submit" onclick="checkEverything()">
+                
+            </center>
+        </div>
+        <script>
+            let sidebar = document.querySelector(".sidebar");
+            let closesidebar = document.querySelector("#btmn");
+
+            closesidebar.addEventListener("click", () => {
+                sidebar.classList.toggle("open");
+                menusidebarChange();
+            });
+
+            function menusidebarChange() {
+                if (sidebar.classList.contains("open")) {
+                    closesidebar.classList.replace("bx-menu", "bx-menu-alt-right");
+                } else {
+                    closesidebar.classList.replace("bx-menu-alt-right", "bx-menu");
+                }
+            }
+        </script>
+    </form>
+
+</body>
+
+</html>

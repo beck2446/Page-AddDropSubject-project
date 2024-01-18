@@ -1,0 +1,424 @@
+<html>
+<title> REQUEST FORM </title>
+<head>
+ 
+	<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png">
+	<link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css">
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+  	<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+
+<style>
+		* {
+  			margin: 0;
+  			padding: 0;
+  			box-sizing: border-box;
+  			font-family: "Prompt" , sans-serif;
+		}
+		body {
+  			background-color: #FFFBF6;
+			font-size: 18px;
+		}input{
+			font-size: 14px;
+			width: 120px;
+		}fieldset{
+			border: 1px solid #ddddd;
+			border-radius: 10px;
+			background-color: #FFFAF6;			
+			padding-left: 30px;
+			padding-bottom: 30px;
+			padding-top: 10px;
+		}.margin{
+  			margin-right: 6%;
+  			margin-left: 10%;
+  			margin-top: 2.5%;
+  			margin-bottom: 7%;
+  		}.buttonAW {
+            background-color: #C3002F;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            width: 105px;
+            height: 35px;
+            font-size: 18px;
+        }
+		.sidebar {
+  			position: fixed;
+  			height: 100%;
+  			width: 78px;
+  			background-color: #C3002F;
+  			padding: 6px 14px;
+  			z-index: 99;
+  			transition: all 0.5s ease;
+		}
+		.sidebar.open {
+  			width: 250px;
+		}
+		.sidebar .logodetail{
+  			height: 115px;
+  			display: flex;
+  			align-items: center;
+  			position: relative;
+		}
+		.sidebar .logodetail .icon{
+  			opacity: 0;
+  			transition: all 0.5s ease;
+		}
+		.sidebar .logodetail .logoname{
+  			color: #FFFFFF;
+  			font-size: 18px;
+  			font-weight: 600;
+  			opacity: 0;
+  			transition: all 0.5s ease;
+  			overflow: hidden;
+  			text-overflow: ellipsis;
+  			white-space: nowrap;
+		}
+		.sidebar.open .logodetail .icon,.sidebar.open .logodetail .logoname{
+  			opacity: 1;
+		}
+		.sidebar .logodetail #btmn{
+  			position: absolute;
+  			top: 50%;
+  			right: 0;
+  			transform: translateY(-50%);
+  			font-size: 35px;
+  			text-align: center;
+  			cursor: pointer;
+  			transition: all 0.4s ease;
+		}
+		.sidebar.open .logodetail #btmn{
+  			text-align: right;
+		}
+		.sidebar i{
+  			color: #FFFFFF;
+        	height: 60px;
+        	min-width: 50px;
+        	font-size: 28px;
+        	text-align: center;
+        	line-height: 60px;
+    	}
+    	.sidebar .list{
+  			margin-top: 25px;
+  			height: 100%;
+		}
+		.sidebar li{
+  			position: relative;
+  			margin: 10px 0;
+  			list-style: none;
+		}
+		.sidebar li .showname{
+  			position: absolute;
+  			left: calc(100% + 15px);
+  			background: #FFFFFF;
+  			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  			padding: 6px 12px;
+  			border-radius: 4px;
+  			font-size: 15px;
+  			opacity: 0;
+  			white-space: nowrap;
+		}
+		.sidebar li:hover .showname{
+  			opacity: 1;
+  			pointer-events: auto;
+  			transition: all 0.4s ease;
+  			top: 50%;
+  			transform: translateY(-50%);
+		}
+		.sidebar.open li .showname{
+  			display: none;
+		}
+		.sidebar li a{
+  			display: flex;
+  			height: 7%;
+  			width: 100%;
+  			border-radius: 50px;
+  			align-items: center;
+  			text-decoration: none;
+  			transition: all 0.4s ease;
+  			background: #C3002F;
+		}
+		.sidebar li a:hover{
+  			background: #FFD13F;
+		}
+		.sidebar li a .linkname{
+  			color: #FFFFFF;
+  			font-size: 15px;
+  			font-weight: 400;
+  			white-space: nowrap;
+  			opacity: 0;
+  			pointer-events: none;
+  			transition: 0.4s;
+		}
+		.sidebar.open li a .linkname{
+  			opacity: 1;
+  			pointer-events: auto;
+		}
+		.sidebar li a:hover .linkname,.sidebar li a:hover i{
+  			transition: all 0.5s ease;
+  			color: #11101D;
+		}
+		.sidebar li i{
+  			height: 50px;
+  			line-height: 50px;
+  			font-size: 25px;
+  			border-radius: 12px;
+		}
+		.sidebar li.logout{
+  			position: fixed;
+  			height: 60px;
+  			width: 78px;
+  			left: 0;
+  			bottom: -8px;
+  			margin-bottom: 20px;
+  			padding: 10px 14px;
+  			transition: all 0.5s ease;
+		}
+		.sidebar.open li.logout{
+  			width: 250px;
+		}
+		.sidebar li .logoutdetail{
+  			display: flex;
+  			align-items: center;
+		}
+		.sidebar li.logout .namelogout1,.sidebar li.logout .namelogout2{
+  			font-size: 15px;
+  			font-weight: 400;
+  			color: #FFFFFF;
+  			white-space: nowrap;
+		}
+		.sidebar li.logout .namelogout2{
+  			font-size: 12px;
+		}
+		.sidebar .logout #loggout{
+  			position: absolute;
+  			top: 50%;
+  			right: 0;
+  			transform: translateY(-50%);
+  			background: #C3002F;
+  			width: 100%;
+  			transition: all 0.5s ease;
+		}
+		.sidebar.open .logout #loggout{
+  			width: 50px;
+		}
+		.webpagemain{
+  			position: relative;
+  			background: #FFD13F;
+  			left: 78px;
+  			width: calc(100% - 78px);
+  			transition: all 0.5s ease;
+		}
+		.sidebar.open ~ .webpagemain{
+  			left: 250px;
+  			width: calc(100% - 250px);
+		}
+		.webpagemain .webpagemaintext1{
+  			display: inline-block;
+  			color: #C3002F;
+  			font-weight: 600;
+  			font-size: 30px;
+  			margin: 5px;
+  			margin-top: 2px;
+  			margin-left: 140px;
+		}
+		.webpagemain .webpagemaintext2{
+  			display: inline-block;
+  			color: #C3002F;
+  			font-weight: 600;
+  			font-size: 18.5px;
+  			margin: 15px;
+  			margin-left: 143px;
+		}
+		.webpagelogo {
+			width: 10;
+			height: 10;
+			margin-left:25px;
+		}
+</style>
+</head>
+
+<body>
+	<form name = "dataSTD">
+  		<div class="sidebar">
+            <div class="logodetail">
+                <i class='bx bxs-book-open icon'> </i>
+                <div class="logoname"> REQUEST FORM </div>
+                <i class='bx bx-menu' id="btmn"> </i>
+            </div>
+            <ul class="list">
+                <li><a href="#">
+                        <i type=button class='bx bx-arrow-back bx-tada-hover' onclick="location.href='MainPageStudent.html'"></i>
+                        <span class="linkname"> Go Back </span> </a>
+                    
+                    <span class="showname"> Go Back </span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <div class="logoutdetail">
+                        <div class="namelogout">
+                            <div class="namelogout1"> LOGOUT </div>
+                            <div class="namelogout2"> ออกจากระบบ </div>
+                        </div>
+                    </div>
+                    <i class='bx bx-log-out' id="loggout"> </i>
+                </li>
+            </ul>
+        </div>
+
+		<div class="webpagemain">
+			<div class="webpagelogo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png" width="100" height="100" style="margin-top: 10px;"> </div>	
+      		<div class="webpagemaintext1" > THAMMASAT UNIVERSITY </div> <br>
+      		<hr style="height: 2.5; width: 375.5; margin-left: 140px;background-color:#C3002F; border-color: #C3002F;" noshade="noshade" > 
+      		<div class="webpagemaintext2"> FACULTY OF SCIENCE AND TECHNOLOGY </div>	
+  		</div>
+
+  		<br>
+  		<div class="date" align="right" margin style="margin-right: 50px;">
+	        <b>วันที่ :: </b><label for="date" id="date"></label></div>
+
+  		<div class="margin">
+  		<fieldset>
+			<legend><b style="color: #C3002F">&#128100;ข้อมูลนักศึกษา :: </b></legend>
+
+			<p>ชื่อ<span style="color: red;">*</span>:
+				<label for="namet">
+   					<select id="namet" name="namet" required>
+   						<option value="" selected>-- คำนำหน้า --</option>
+        				<option value="นาย">นาย</option> 
+        				<option value="นาง">นาง</option>
+        				<option value="นางสาว">นางสาว</option> 
+       				</select>
+     			</label >
+
+     			<label for="fname" > 
+  					<input type="text" id="fname" name="fname"
+  					style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกชื่อให้ถูกต้อง **" required></label>
+	  			<label for="lname" >นามสกุล<span style="color: red;">*</span>: 
+  					<input type="text" id="lname" name="lname"
+  					style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกนามสกุลให้ถูกต้อง **"required></label>
+     			<label for="stdID">&emsp;รหัสทะเบียนนักศึกษา<span style="color: red;">*</span>: 
+  					<input type="text" id="stdID" name="stdID" maxlength="10" pattern="[0-9]{10,}" title="** กรุณากรอกเฉพาะตัวเลข 10 หลัก **"required></label>
+				
+  				<label for="Grade">&emsp;ชั้นปีที่<span style="color: red;">*</span>
+   					<select id="Grade" name="Grade" required>
+   						<option value="" selected> -- </option>
+        				<option value="year1">1</option>
+        				<option value="year2">2</option>
+        				<option value="year3">3</option> 
+   	    				<option value="year4">4</option>
+   	    				<option value="year5">5</option> 
+        				<option value="year6">6</option>
+        				<option value="year7">7</option> 
+    	   			</select>
+     			</label>
+     		</p>
+     		<br>
+
+     			<label for="major">สาขาวิชา<span style="color: red;">*</span> :: 
+   					<select id="major" name="major" required>
+   						<option value="" selected><center>---------------------------- สาขาวิชา ----------------------------</center></option>
+        				<option value="สาขาวิชาวิทยาการคอมพิวเตอร์">สาขาวิชาวิทยาการคอมพิวเตอร์</option> 
+        				<option value="สาขาวิชาสถิติ">สาขาวิชาสถิติ</option>
+        				<option value="สาขาวิชาคณิตศาสตร์">สาขาวิชาคณิตศาสตร์</option> 
+   	    				<option value="สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม">สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม</option> 
+        				<option value="สาขาวิชาเทคโนโลยีเพื่อการพัฒนายั่งยืน">สาขาวิชาเทคโนโลยีเพื่อการพัฒนายั่งยืน</option>
+        				<option value="สาขาวิชาเทคโนโลยีการเกษตร">สาขาวิชาเทคโนโลยีการเกษตร</option> 
+   	    				<option value="สาขาวิชาเคมี">สาขาวิชาเคมี</option>
+   	    				<option value="สาขาวิชาวิทยาศาตร์และเทคโนโลยีการอาหาร">สาขาวิชาวิทยาศาตร์และเทคโนโลยีการอาหาร</option>
+   	    				<option value="สาขาวิชาคณิตศาสตร์ประยุกต์">สาขาวิชาคณิตศาสตร์ประยุกต์</option> 
+        				<option value="สาขาวิชาฟิสิกส์อิเล็กทรอนิกส์">สาขาวิชาฟิสิกส์อิเล็กทรอนิกส์</option>
+        				<option value="สาขาวิชาเทคโนโลยีชีวภาพ">สาขาวิชาเทคโนโลยีชีวภาพ</option> 
+   	    				<option value="สาขาวิชาฟิสิกส์">สาขาวิชาฟิสิกส์</option>
+   	    				<option value="สาขาวิชาวัสดุศาสตร์">สาขาวิชาวัสดุศาสตร์</option> 
+        				<option value="สาขาวิชาวิทยาศาตร์และเทคโนโลยีสิ่งทอ">สาขาวิชาวิทยาศาตร์และเทคโนโลยีสิ่งทอ</option>
+        				<option value="สาขาวิชาวิทยาศาตร์และนวัตกรรมทางอาหาร">สาขาวิชาวิทยาศาตร์และนวัตกรรมทางอาหาร</option> 
+   	    				<option value="สาขาวิชาเทคโนโลยีพลังงานชีวภาพและการแปรรูปเคมีชีวภาพ">สาขาวิชาเทคโนโลยีพลังงานชีวภาพและการแปรรูปเคมีชีวภาพ</option>
+   	    				<option value="สาขาวิชาคณิตศาสตร์การจัดการ(ตรีควบโท)">สาขาวิชาคณิตศาสตร์การจัดการ(ตรีควบโท)</option> 
+        				<option value="สาขาวิชาวิทยาการประกันภัย">สาขาวิชาวิทยาการประกันภัย</option>
+        				<option value="สาขาวิชาวิทยาศาสตร์อุตสาหการและการจัดการ(หลักสูตรนานาชาติ)">สาขาวิชาวิทยาศาสตร์อุตสาหการและการจัดการ(หลักสูตรนานาชาติ)</option> 
+   	    				<option value="สาขาวิชาการออกแบบเชิงนวัตกรรมดิจิทัล(หลักสูตรนานาชาติ)">สาขาวิชาการออกแบบเชิงนวัตกรรมดิจิทัล(หลักสูตรนานาชาติ)</option>
+   	    				<option value="สาขาวิชาเทคโนโลยีดิจิทัลแนวสร้างสรรค์(หลักสูตรนานาชาติ)">สาขาวิชาเทคโนโลยีดิจิทัลแนวสร้างสรรค์(หลักสูตรนานาชาติ)</option>
+    	   			</select>
+     			</label>
+     			<br><br>
+     			<label for="advisor">อาจารย์ที่ปรึกษา<span style="color: red;">*</span>:: 
+  					<input type="text" id="advisor" name="advisor"style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกชื่อ-นามสกุลอาจารย์ที่ปรึกษาให้ถูกต้อง **" required></label>
+  				<br>
+     	</fieldset><br><br>
+		
+		<fieldset>
+
+			<legend><b style="color: #C3002F";>&#128205;ที่อยู่ที่สามารถติดต่อได้ :: </b></legend>
+			<p>
+			<label for="num">บ้านเลขที่<span style="color: red;">*</span>: 
+  				<input type="text" id="num" name="num"style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกบ้านเลขที่ **"required></label>
+  			<label for="moo">&emsp;หมู่ที่<span style="color: red;">*</span>: 
+  				<input type="text" id="moo" name="moo"style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกหมู่ที่ **" required></label>
+  			<label for="Tambon">&emsp;ตำบล<span style="color: red;">*</span>: 
+  				<input type="text" id="Tambon" name="Tambon"style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกตำบล **" required></label>
+  			<label for="Amphoe">&emsp;อำเภอ<span style="color: red;">*</span>: 
+  				<input type="text" id="Amphoe" name="Amphoe"style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกตำบล **" required></label>
+  			</p>
+  				<br>
+  			<p>
+  			<label for="Province">จังหวัด<span style="color: red;">*</span>: </label>
+  				<input type="text" id="Province" name="Province"style="border: none; border-bottom: 1px navy double" title="** กรุณากรอกจังหวัด **" required>
+  			<label for="PostalCode">&emsp;รหัสไปรษณีย์<span style="color: red;">*</span>: 
+  				<input type="text" id="PostalCode" name="PostalCode"style="border: none; border-bottom: 1px navy double" maxlength="5" pattern="[0-9]{5,}" title="** กรุณากรอกเฉพาะตัวเลข 5 หลัก **" required></label>
+  			</p>
+  			<br>
+
+  			<label for="numPhone">โทรศัพท์มือถือ<span style="color: red;">*</span>: 
+  				<input type="text" id="numPhone" name="numPhone" maxlength="10" pattern="[0]{1}[0-9]{9,}" title="** กรุณากรอกเฉพาะตัวเลข10หลัก **" required></label>
+			<label for="numHouse">&emsp;โทรศัพท์บ้าน(ถ้ามี): 
+ 				<input type="text" id="numHouse" name="numHouse"></label>
+ 			<br>
+ 			
+		</fieldset>
+
+		<br>
+		<label for="petition">&emsp;<b>แบบฟอร์มการเขียนคำร้อง<span style="color: red;">*</span></b>&emsp;
+   			<select id="petition" name="petition" required>
+   				<option value="" selected> -------------- กรุณาเลือกแบบฟอร์มการเขียนคำร้อง --------------</option>
+        		<option value="add/drop">คำร้องจดทะเบียนล่าช้า(เพิ่มล่าช้า) / คำร้องขอถอนวิชา(Drop W)</option>
+        		<option value="exit">คำร้องขอลาออก</option>
+    	   	</select>
+     	</label>
+     	<br><br>
+
+     	<div align="right">
+     		<input type=button class="buttonAW" name="Next" value="Next" onclick="checkEverything()"></div>
+
+  		<script>
+  			let sidebar = document.querySelector(".sidebar");
+  			let closesidebar = document.querySelector("#btmn");
+
+	  		closesidebar.addEventListener("click", ()=>{
+	    	sidebar.classList.toggle("open");
+	    	menusidebarChange();
+	  		});
+
+	  		function menusidebarChange() {
+   			if(sidebar.classList.contains("open")){
+     		closesidebar.classList.replace("bx-menu", "bx-menu-alt-right");
+   			}else {
+     		closesidebar.classList.replace("bx-menu-alt-right","bx-menu");
+   			}
+  			}
+
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+			var yyyy = today.getFullYear();
+    		today = dd + '/' + mm + '/' + (yyyy+543);
+    		document.getElementById('date').innerHTML=today;
+  		</script>
+        <script src="controller_StudentData.js"></script>
+
+	</form>
+	</div>
+
+</body>
+
+</html>
